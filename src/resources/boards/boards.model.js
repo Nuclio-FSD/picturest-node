@@ -1,21 +1,21 @@
 const mongoose = require('mongoose');
 
 // Define model schema
-const userModelSchema = mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  avatar: String,
-  password: String,
-  username: String,
-  following: [],
+const boardModelSchema = mongoose.Schema({
+  id: Number,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserModel',
+  },
+  title: String,
+  collaborators: [],
 });
 
 // Compile model from schema
-const User = mongoose.model('UserModel', userModelSchema);
+const Board = mongoose.model('BoardModel', boardModelSchema);
 
-const create = (user) => {
-  User.create(user, function (err, docs) {
+const create = (board) => {
+  Board.create(board, function (err, docs) {
     if (err) {
       console.log(err);
     } else {
@@ -26,21 +26,16 @@ const create = (user) => {
 
 const get = async (id) => {
   let query = { _id: id };
-  return await User.findOne(query);
-};
-
-const getByEmail = async (email) => {
-  let query = { email: email };
-  return await User.findOne(query);
+  return await Board.findOne(query).populate('author');
 };
 
 const all = async () => {
-  return await User.find();
+  return await Board.find().populate('author', 'username');
 };
 
 const remove = (id) => {
   let query = { _id: id };
-  User.deleteOne(query, function (err, docs) {
+  Board.deleteOne(query, function (err, docs) {
     if (err) {
       console.log(err);
     } else {
@@ -49,9 +44,9 @@ const remove = (id) => {
   });
 };
 
-const update = (id, updateduser) => {
+const update = (id, updatedboard) => {
   let query = { _id: id };
-  User.updateOne(query, updateduser, function (err, docs) {
+  Board.updateOne(query, updatedboard, function (err, docs) {
     if (err) {
       console.log(err);
     } else {
@@ -65,6 +60,5 @@ module.exports = {
   update,
   remove,
   get,
-  getByEmail,
   all,
 };
