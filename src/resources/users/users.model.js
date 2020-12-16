@@ -31,6 +31,11 @@ const get = async(id) => {
   return await User.findOne(query);
 };
 
+const getByEmail = async(email) => {
+  let query = { 'email': email };
+  return await User.findOne(query);
+};
+
 const all = async() => {
   return await User.find();
 }
@@ -69,5 +74,6 @@ module.exports = {
     update,
     remove,
     get,
+    getByEmail,
     all
   };

@@ -1,6 +1,3 @@
-const persimon = require('../../utils/persimon');
-const db = persimon('/assets/users.json'); // Relative to the project root
-
 const userModel = require('./users.model');
 
 const getAll = async (req, res) => {

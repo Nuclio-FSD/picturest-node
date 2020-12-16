@@ -1,11 +1,10 @@
-const persimon = require('../../utils/persimon');
-const db = persimon('/assets/users.json'); // Relative to the project root
+const userModel = require('../users/users.model');
 const jwt = require('jsonwebtoken');
 
-const login = (req, res) => {
+const login = async(req, res) => {
     const { email, password } = req.body;
-    const user = db.all().find(u => { return u.email === email && u.password === password} )
-    if (user)
+    const user = await userModel.getByEmail(email);
+    if (user.password === password)
     {
       const token = jwt.sign({email: email, role: 'admin'}, process.env.TOKEN_SECRET);
       res.json(token);
