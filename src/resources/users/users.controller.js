@@ -2,7 +2,7 @@ const userModel = require('./users.model');
 
 const getAll = async (req, res) => {
   const users = await userModel.all();
-  console.log('BRANCH TEST');
+  console.log('BRANCH MASTER');
   return res.status(200).json(users);
 };
 
