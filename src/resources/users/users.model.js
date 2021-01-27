@@ -8,7 +8,12 @@ const userModelSchema = mongoose.Schema({
   avatar: String,
   password: String,
   username: String,
-  following: [],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'UserModel',
+    },
+  ],
 });
 
 // Compile model from schema

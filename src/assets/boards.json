@@ -28,5 +28,7 @@
   { "id": 27, "author": 11, "title": "Reinke", "collaborators": [] },
   { "id": 28, "author": 4, "title": "Killdeer", "collaborators": [] },
   { "id": 29, "author": 3, "title": "Harbort", "collaborators": [] },
-  { "id": 30, "author": 5, "title": "Lighthouse Bay", "collaborators": [] }
+  { "id": 30, "author": 5, "title": "Lighthouse Bay", "collaborators": [] },
+  { "author": "5fda36ecd8a88e0f2d71c12f", "title": "Board 1", "id": 31 },
+  { "author": "5fda36ecd8a88e0f2d71c12f", "title": "Board 1", "id": 32 }
 ]

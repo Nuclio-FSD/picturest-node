@@ -2,13 +2,23 @@ const mongoose = require('mongoose');
 
 // Define model schema
 const boardModelSchema = mongoose.Schema({
-  id: Number,
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserModel',
   },
   title: String,
-  collaborators: [],
+  collaborators: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'UserModel',
+    },
+  ],
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'CategoryModel',
+    },
+  ],
 });
 
 // Compile model from schema

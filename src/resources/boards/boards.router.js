@@ -10,4 +10,6 @@ router
   .put(boardsController.update)
   .delete(boardsController.remove);
 
+router.route('/:id/pins').get(boardsController.getPinsOfBoard);
+
 module.exports = router;
