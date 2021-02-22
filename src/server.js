@@ -24,6 +24,9 @@ app.use('/', authRouter);
 app.use('/api/pins', pinsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
+app.use('/healthcheck', (req, res) => {
+    return res.status(200).json({ message: 'OK' });
+  });
 
 app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS256'] } ), (req, res) => {
   res.send('protected');
@@ -31,7 +34,7 @@ app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS2
 
 const start = async () => {
   try {
-    app.listen(config.port, () => {
+    app.listen(config.port || 5001, () => {
       console.log(`REST API on http://localhost:${config.port}/api`);
     });
   } catch (e) {
@@ -41,5 +44,5 @@ const start = async () => {
 
 module.exports = {
   start,
-  app,
+  app
 };
