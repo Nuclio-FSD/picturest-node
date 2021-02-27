@@ -32,7 +32,7 @@ module.exports = {
   setupMongo(databaseName) {
     // Connect to Mongoose
     beforeAll(async () => {
-      const url = `mongodb://mongoadmin:secret@localhost:27017/${databaseName}?authSource=admin`;
+      const url = `${process.env.DB_CONN_STR}/${databaseName}?authSource=admin`;
       await mongoose.connect(url, { useNewUrlParser: true });
     });
 
