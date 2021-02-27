@@ -15,7 +15,7 @@ describe('Test Array Utils', () => {
     expect(result[0]).toBe("chau");
   });
 
-  it('It should do nothin if the array is empty', () => {
+  it('It should do nothing if the array is empty', () => {
     const result = removeElementFromArray("hola", []);
     
     expect(result.length).toBe(0);

@@ -9,7 +9,6 @@ const usersRouter = require('./resources/users/users.router');
 const boardsRouter = require('./resources/boards/boards.router');
 const jwt = require('express-jwt');
 const dotenv = require("dotenv");
-const mongo = require("./config/mongo");
 
 dotenv.config();
 const app = express();
@@ -34,7 +33,7 @@ app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS2
 
 const start = async () => {
   try {
-    app.listen(config.port || 5001, () => {
+    app.listen(config.port, () => {
       console.log(`REST API on http://localhost:${config.port}/api`);
     });
   } catch (e) {
