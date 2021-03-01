@@ -24,8 +24,8 @@ app.use('/api/pins', pinsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/healthcheck', (req, res) => {
-    return res.status(200).json({ message: 'OK' });
-  });
+  return res.status(200).json({ message: 'OK' });
+});
 
 app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS256'] } ), (req, res) => {
   res.send('protected');

@@ -85,3 +85,60 @@ test('Add a user should work', async() => {
     expect(getAllRes.status).toBe(200);
     expect(getAllRes.body.length).toEqual(1);
 });
+
+test('Add a user should work and login as well', async() => {
+  const creationRes = await request(app)
+      .post('/api/users')
+      .send(
+          {
+          id: 1,
+          firstName: "Cass",
+          lastName: "Loughrey",
+          email: "cloughrey0@mozilla.org",
+          avatar: "https://robohash.org/consecteturnobisdolores.bmp?size=50x50&set=set1",
+          password: "cloughrey0123",
+          username: "johnDoe"
+          }
+      );
+
+  const loginRes = await request(app)
+      .post('/login')
+      .send(
+        {
+          email: "cloughrey0@mozilla.org",
+          password: "cloughrey0123",
+        }
+      );
+
+  expect(creationRes.status).toBe(201);
+  expect(loginRes.status).toBe(200);
+  expect(loginRes.body).not.toBeUndefined();
+});
+
+test('Add a user should work and login should not work', async() => {
+  const creationRes = await request(app)
+      .post('/api/users')
+      .send(
+          {
+          id: 1,
+          firstName: "Cass",
+          lastName: "Loughrey",
+          email: "cloughrey0@mozilla.org",
+          avatar: "https://robohash.org/consecteturnobisdolores.bmp?size=50x50&set=set1",
+          password: "cloughrey0123",
+          username: "johnDoe"
+          }
+      );
+
+  const loginRes = await request(app)
+      .post('/login')
+      .send(
+        {
+          email: "cloughrey0@mozilla.org",
+          password: "test123",
+        }
+      );
+
+  expect(creationRes.status).toBe(201);
+  expect(loginRes.status).toBe(401);
+});

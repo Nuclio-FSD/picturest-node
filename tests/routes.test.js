@@ -1,4 +1,4 @@
-const request = require('supertest')
+const request = require('supertest');
 const { setupMongo } = require("./test.setup");
 const { app } = require('../src/server');
 
