@@ -16,7 +16,6 @@ const getOne = async (req, res) => {
 };
 
 const create = (req, res) => {
-  return;
   // Finds the validation errors in this request and wraps them in an object with handy functions
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
