@@ -9,7 +9,6 @@ const usersRouter = require('./resources/users/users.router');
 const boardsRouter = require('./resources/boards/boards.router');
 const jwt = require('express-jwt');
 const dotenv = require("dotenv");
-const mongo = require("./config/mongo");
 
 dotenv.config();
 const app = express();
@@ -25,8 +24,8 @@ app.use('/api/pins', pinsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/healthcheck', (req, res) => {
-    return res.status(200).json({ message: 'OK' });
-  });
+  return res.status(200).json({ message: 'OK' });
+});
 
 app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS256'] } ), (req, res) => {
   res.send('protected');
@@ -34,7 +33,7 @@ app.get('/protected', jwt( { secret: process.env.TOKEN_SECRET, algorithms: ['HS2
 
 const start = async () => {
   try {
-    app.listen(config.port || 5001, () => {
+    app.listen(config.port, () => {
       console.log(`REST API on http://localhost:${config.port}/api`);
     });
   } catch (e) {
