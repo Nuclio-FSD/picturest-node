@@ -4,7 +4,7 @@
   "description": "Nuclio pinterest clone API",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "test:watch": "jest --watch",
     "start:dev": "nodemon src/index.js",
     "start": "node src/index.js"
