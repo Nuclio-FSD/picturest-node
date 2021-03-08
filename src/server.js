@@ -24,6 +24,7 @@ app.use('/api/pins', pinsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/healthcheck', (req, res) => {
+  console.log('GET healthcheck!');
   return res.status(200).json({ message: 'OK' });
 });
 
