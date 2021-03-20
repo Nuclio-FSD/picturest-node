@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 dotenv.config();
 mongoose.set('debug', process.env.NODE_ENV === 'development');
-const options = {useNewUrlParser: true, useUnifiedTopology: true}
+const options = { useNewUrlParser: true, useUnifiedTopology: true }
 const mongo = mongoose.connect(process.env.DB_CONN_STR, options);
 
 mongo.then(() => {
